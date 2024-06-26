@@ -117,7 +117,7 @@ function TaskForm({onSuccess}) {
                             label="Due Date"
                             type="date"
                             name="dueDate"
-                            value={formData.dueDate}
+                            value={new Date(formData.dueDate)}
                             onChange={handleChange}
                             margin="normal"
                             InputLabelProps={{
