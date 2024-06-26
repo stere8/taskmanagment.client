@@ -5,7 +5,7 @@ import UserList from '../components/UsersList';
 import config from "../config";
 
 function UsersPage() {
-    const [setUsers] = useState([]);
+    const [users,setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [form, setForm] = useState({
         username: '',
@@ -16,7 +16,7 @@ function UsersPage() {
 
     useEffect(() => {
         fetchUsers();
-    }, []);
+    }, [users]);
 
     const fetchUsers = async () => {
         try {

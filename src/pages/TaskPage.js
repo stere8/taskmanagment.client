@@ -13,31 +13,13 @@ function TasksPage() {
         endDate: "",
     });
 
-    const [ setTasks] = useState([]);
     const [users, setUsers] = useState([]);
-    const [setSelectedTask] = useState(null);
-    const [form, setForm] = useState({
-        title: "",
-        description: "",
-        dueDate: new Date().toISOString().split("T")[0],
-        completed: false,
-        userId: "",
-    });
+
 
     useEffect(() => {
-        fetchTasks();
         fetchUsers();
     }, []);
 
-    const fetchTasks = async () => {
-        try {
-            const tasksResponse = await axios.get();
-            const dataUsers = tasksResponse.data.$values || [];
-            setTasks(Array.isArray(dataUsers) ? dataUsers : []);
-        } catch (error) {
-            console.error("Error fetching tasks:", error);
-        }
-    };
 
     const fetchUsers = async () => {
         try {
