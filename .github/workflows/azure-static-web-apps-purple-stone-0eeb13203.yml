@@ -15,10 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
+          persist-credentials: false # This disables automatically persisting the credentials
+      - name: Remove extraheader in git config
+        run: git config --global --unset http.https://github.com/.extraheader
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
