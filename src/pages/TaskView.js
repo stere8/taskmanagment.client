@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate  } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {useParams, Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import { Paper, Typography, Button, Grid } from '@mui/material';
+import {Paper, Typography, Button, Grid} from '@mui/material';
 import config from '../config';
 
-function TaskView({ onBack }) {
-    const { taskId } = useParams();
+function TaskView({onBack}) {
+    const {taskId} = useParams();
     const navigate = useNavigate();
     const [task, setTask] = useState(null);
     const [user, setUser] = useState(null);
@@ -67,7 +67,7 @@ function TaskView({ onBack }) {
 
     const handleToggleComplete = async () => {
         try {
-            const updatedTask = { ...task, completed: !task.completed };
+            const updatedTask = {...task, completed: !task.completed};
             await axios.put(`${config.API_URL}/Tasks/${taskId}`, updatedTask);
             setTask(updatedTask); // Update local state
             // Optionally handle success notification or other actions
@@ -84,7 +84,7 @@ function TaskView({ onBack }) {
     return (
         <Grid container justifyContent="center">
             <Grid item xs={12} md={8}>
-                <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+                <Paper elevation={3} style={{padding: '20px', marginTop: '20px'}}>
                     <Typography variant="h5" gutterBottom>
                         Task Details
                     </Typography>
@@ -95,15 +95,17 @@ function TaskView({ onBack }) {
                         <strong>Description:</strong> {task.description}
                     </Typography>
                     <Typography variant="body1" gutterBottom>
-                        <strong>Status:</strong> <span style={{ color: task.completed ? 'green' : new Date(task.dueDate) < new Date() ? 'red' : 'orange' }}>
-                            {task.completed ? "Completed" : new Date(task.dueDate) < new Date() ? 'Late' : 'In Progress'}
-                        </span>
+                        <strong>Status:</strong> <span
+                        style={{color: task.completed ? 'green' : new Date(task.dueDate) < new Date() ? 'red' : 'orange'}}>
+                    {getTaskStatus()}
+                    </span>
                     </Typography>
                     <Typography variant="body1" gutterBottom>
                         <strong>Assigned To:</strong> {user ? user.username : 'Unknown'}
                     </Typography>
                     <Typography variant="body1" gutterBottom>
-                        <strong>Due Date:</strong> {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'No Due Date'}
+                        <strong>Due
+                            Date:</strong> {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'No Due Date'}
                     </Typography>
                     <Grid container spacing={2} justifyContent="center">
                         <Grid item>
@@ -113,7 +115,7 @@ function TaskView({ onBack }) {
                                 onClick={handleBack}
                                 component={Link}
                                 to="/tasks"
-                                style={{ marginRight: '10px' }}
+                                style={{marginRight: '10px'}}
                             >
                                 Back to Tasks
                             </Button>
@@ -124,7 +126,7 @@ function TaskView({ onBack }) {
                                     variant="contained"
                                     color="primary"
                                     onClick={contactUser}
-                                    style={{ marginRight: '10px' }}
+                                    style={{marginRight: '10px'}}
                                 >
                                     Contact User
                                 </Button>
@@ -135,7 +137,7 @@ function TaskView({ onBack }) {
                                 variant="contained"
                                 color="secondary"
                                 onClick={handleDelete}
-                                style={{ marginRight: '10px' }}
+                                style={{marginRight: '10px'}}
                             >
                                 Delete
                             </Button>
@@ -143,7 +145,11 @@ function TaskView({ onBack }) {
                         <Grid item>
                             <Button
                                 variant="contained"
-                                style={{ backgroundColor: task.completed ? '#bdbdbd' : '#3f51b5', color: 'white', marginRight: '10px' }}
+                                style={{
+                                    backgroundColor: task.completed ? '#bdbdbd' : '#3f51b5',
+                                    color: 'white',
+                                    marginRight: '10px'
+                                }}
                                 onClick={handleToggleComplete}
                             >
                                 {task.completed ? "Mark as Undone" : "Mark as Done"}

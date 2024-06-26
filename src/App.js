@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import {ThemeProvider} from '@mui/material/styles';
 import TaskPage from './pages/TaskPage';
 import TaskForm from './components/TaskForm'

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useParams, Link, useNavigate  } from 'react-router-dom';
-import { TextField, Button, Grid, Paper, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import {useParams, useNavigate} from 'react-router-dom';
+import {TextField, Button, Grid, Paper, Typography, Select, MenuItem, FormControl, InputLabel} from '@mui/material';
 import config from '../config';
 
 const initialState = {
@@ -12,8 +12,8 @@ const initialState = {
     completed: false, // Include completed field in the initial state
 };
 
-function TaskForm({ onSuccess }) {
-    const { taskId } = useParams(); // Get taskId from URL params
+function TaskForm({onSuccess}) {
+    const {taskId} = useParams(); // Get taskId from URL params
     const [formData, setFormData] = useState(initialState);
     let navigate = useNavigate()
     const [loading, setLoading] = useState(false);
@@ -51,8 +51,8 @@ function TaskForm({ onSuccess }) {
     }, [taskId]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value});
     };
 
     const handleSubmit = async (e) => {
@@ -82,12 +82,12 @@ function TaskForm({ onSuccess }) {
     return (
         <Grid container justifyContent="center">
             <Grid item xs={12} md={8}>
-                <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+                <Paper elevation={3} style={{padding: '20px', marginTop: '20px'}}>
                     <Typography variant="h5" gutterBottom>
                         {taskId ? 'Edit Task' : 'Add Task'}
                     </Typography>
                     {formData.completed && (
-                        <Typography variant="body1" style={{ marginBottom: '10px', color: 'red' }}>
+                        <Typography variant="body1" style={{marginBottom: '10px', color: 'red'}}>
                             Task is completed. Editing is not allowed.
                         </Typography>
                     )}
@@ -145,13 +145,16 @@ function TaskForm({ onSuccess }) {
                             variant="contained"
                             color="primary"
                             disabled={loading || formData.completed} // Disable if loading or task is completed
-                            style={{ marginTop: '20px' }}
+                            style={{marginTop: '20px'}}
                         >
                             {loading ? 'Submitting...' : 'Submit'}
                         </Button>
                     </form>
-                    {error && <Typography color="error" style={{ marginTop: '10px' }}>Error: {error}</Typography>}
-                    {success && <Typography style={{ marginTop: '10px', color: 'green' }}>Task {taskId ? 'updated' : 'added'} successfully!</Typography>}
+                    {error && <Typography color="error" style={{marginTop: '10px'}}>Error: {error}</Typography>}
+                    {success && <Typography style={{
+                        marginTop: '10px',
+                        color: 'green'
+                    }}>Task {taskId ? 'updated' : 'added'} successfully!</Typography>}
                 </Paper>
             </Grid>
         </Grid>

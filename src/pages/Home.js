@@ -5,7 +5,7 @@ import UserList from '../components/UsersList';
 
 function Home() {
   const [filters, setFilters] = useState({});
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
 
   useEffect(() => {
     setFilters({
@@ -22,7 +22,7 @@ function Home() {
       completed: "",
       startDate: "",
       endDate: "",
-    });;  };
+    }); };
 
   const handleViewAll = () => {
     setFilters({
@@ -30,7 +30,7 @@ function Home() {
       completed: "",
       startDate: "",
       endDate: "",
-    });;
+    });
   };
 
   if (error) return <div>Error: {error}</div>;

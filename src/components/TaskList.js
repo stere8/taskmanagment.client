@@ -70,7 +70,7 @@ function TaskList({ filters = { userId: '', completed: '', startDate: '', endDat
           {taskList.filter((item) => {
             return (
               (filters.completed === '' ? item : item.completed === filters.completed) &&
-              (filters.userId === '' ? item : item.userId == filters.userId) &&
+              (filters.userId === '' ? item : item.userId === filters.userId) &&
               (filters.startDate === '' ? item : item.dueDate >= filters.startDate) &&
               (filters.endDate === '' ? item : item.dueDate <= filters.endDate)
             );
